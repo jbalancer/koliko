@@ -1,7 +1,9 @@
+import { HttpClientResponse } from "@/shared/types/http-client.types";
+
 export interface PaymentService {
   pay(
     params: PaymentTransactionParams
-  ): Promise<PaymentTransactionResult>
+  ): PaymentPayResult
 }
 
 export interface PaymentTransactionParams {
@@ -12,3 +14,7 @@ export interface PaymentTransactionParams {
 export interface PaymentTransactionResult {
   success: boolean
 }
+
+export type PaymentPayResult = Promise<
+  PaymentTransactionResult | HttpClientResponse
+>

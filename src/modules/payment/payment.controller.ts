@@ -1,8 +1,8 @@
 import { FastifyRequest } from "fastify";
 import {
+  PaymentPayResult,
   PaymentService,
-  PaymentTransactionParams,
-  PaymentTransactionResult
+  PaymentTransactionParams
 } from "./payment.types";
 
 export default class PaymentController {
@@ -15,7 +15,7 @@ export default class PaymentController {
     request: FastifyRequest<{
       Body: PaymentTransactionParams
     }>
-  ): Promise<PaymentTransactionResult> {
+  ): PaymentPayResult {
     return this.paymentService.pay(request.body);
   }
 

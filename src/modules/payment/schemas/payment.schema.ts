@@ -1,3 +1,5 @@
+import { globalConfig } from "@/shared/configs";
+
 export const paymentTransactionSchema = {
   type: 'object',
   properties: {
@@ -5,7 +7,8 @@ export const paymentTransactionSchema = {
       type: 'integer'
     },
     amount: {
-      type: 'integer'
+      type: 'number',
+      minimum: globalConfig.amount.min
     }
   },
   required: [

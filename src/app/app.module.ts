@@ -3,6 +3,8 @@ import { globalConfig } from '@/shared/configs';
 import { controllersPlugin } from './plugins/controllers.plugin';
 import { swaggerPlugin } from './plugins/swagger.plugin';
 import { RedisClient } from '@/infra/redis';
+import { DBClient } from '@/infra/db';
+import { PaymentUsersDB } from '@/modules/payment';
 
 export const bootstrap = async () => {
   const app = Fastify();
@@ -15,6 +17,8 @@ export const bootstrap = async () => {
 
   try {
     await RedisClient.init();
+    await DBClient.init();
+    await PaymentUsersDB.init();
 
     await app.listen({
       port: globalConfig.appPort
